@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<div>
+    <h4 class="mt-3">Name of Customer :{{user}}</h4>
+
+    {% for i in or %}
+    <div class="row  border">
+        <div class="col-sm-4  border border-1">
+            <center><img class="m-3"  src="{{i.product.image.url}}" height="200" width="400"></center>
+        </div>
+        <div class="col-sm-4" style="font-size:18px;text-transform:uppercase;">
+            <p>Order Address : {{i.address}}</p>
+            <p>Customer Phone : {{i.phone}}</p>
+            <p>Product Name : {{i.product.name}}</p>
+            <p>Product Price : {{i.product.price}}</p>
+            <p>Ordered on : {{i.date_ordered}}</p>
+            <p>Delivery Status : {{i.delivery_status}}</p>
+        </div>
+
+
+    </div>
+
+
+</div>
+
+{% endfor %}
+
+{% endblock %}
+
+

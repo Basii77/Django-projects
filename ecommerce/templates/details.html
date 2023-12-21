@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<br>
+<div class="row">
+  <div class="col-2 m-5" ">
+    <center><img src="{{p.image.url}}" class="card-img-top" alt="..." style="width:100%;" height="300"></center>
+
+  </div>
+  <div class="col-sm-6 mt-5" style="text-transform: uppercase;font-size:20px;">
+
+        <h5>Name : {{p.name}}</h5>
+        <p >Description : {{p.desc}}</p>
+        <h5>Price : {{p.price}}</h5>
+        {% if user.is_superuser == False %}
+            {% if p.stock <= 0 %}
+                <h5 class="text-danger">Out Of Stock</h5>
+            {% else %}
+                <a   class="btn btn-outline-info" href="{% url 'cart:cart' p.name %}">ADD TO CART</a>
+            {% endif %}
+        {% else %}
+            {% if p.stock <= 0 %}
+                <h5 class="badge bg-danger text-dark" s>Out Of Stock</h5><br>
+                <a   class="btn btn-outline-success" href="{% url 'admin:index' %}">ADD  STOCK</a>
+            {% else %}
+                 <a   class="btn btn-outline-success" href="{% url 'admin:index' %}">ADD  STOCK</a>
+            {% endif %}
+        {% endif %}
+  </div>
+</div>
+
+
+
+
+
+{% endblock %}
